@@ -13,7 +13,7 @@ public class FabricaDeUsuario {
         return this.usuario;
     }
 
-    private Usuario incluiEndereco(String cep, String numero, String complemento) {
+    public Usuario incluiEndereco(String cep, String numero, String complemento) {
         this.usuario.setEndereco(new Endereco(cep, numero, complemento));
         return this.usuario;
     }
