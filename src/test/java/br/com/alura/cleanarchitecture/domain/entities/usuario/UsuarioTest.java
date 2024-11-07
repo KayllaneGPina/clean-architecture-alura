@@ -29,4 +29,15 @@ public class UsuarioTest {
         usuario = fabrica.incluiEndereco("12345-678", "123", "Casa");
         Assertions.assertEquals("12345-678", usuario.getEndereco().getCep());
     }
+
+    @Test
+    public void naoDeveCadastrarUsuarioComMenosDe18Anos() {
+        LocalDate dataNascimento = LocalDate.now().minusYears(17);
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Usuario("123.456.789-00", "Fulano", dataNascimento, "fulano@example.com");
+        });
+
+        Assertions.assertEquals("Usuário deve ter pelo menos 18 anos de idade!", exception.getMessage());
+    }
 }
